@@ -16,5 +16,6 @@ def main():
     rows = [track.values() for track in track_dictionary_list]
     print(sph.tabulate_tracks(rows, tablefmt='grid'))
 
+
 if __name__ == "__main__":
     main()

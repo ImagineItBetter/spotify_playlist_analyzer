@@ -1,5 +1,6 @@
-import tabulate
 import argparse
+
+import tabulate
 from dotenv import load_dotenv
 
 import spotify_helpers as sph
