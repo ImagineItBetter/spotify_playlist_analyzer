@@ -1,7 +1,8 @@
-import spotipy
 import os
-from spotipy.oauth2 import SpotifyOAuth
 
+import spotipy
+import tabulate
+from spotipy.oauth2 import SpotifyOAuth
 
 key_mappings = {
     -1: "Not Specified",
@@ -25,11 +26,12 @@ mode_mappings = {
 }
 
 
-
 def create_spotify_client(scope):
     return spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope,
-                                                     client_id=os.getenv('SPOTIFY_CLIENT_ID'),
-                                                     client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'),
+                                                     client_id=os.getenv(
+                                                         'SPOTIFY_CLIENT_ID'),
+                                                     client_secret=os.getenv(
+                                                         'SPOTIFY_CLIENT_SECRET'),
                                                      redirect_uri="http://localhost:8080"))
 
 
@@ -68,3 +70,9 @@ def make_playlist_dictionary(client, tracks):
         }
         track_dictionary_list.append(track_dictionary)
     return track_dictionary_list
+
+
+def tabulate_tracks(track_dictionary_list: list[dict]):
+    header = track_dictionary_list[0].keys()
+    rows = [track.values() for track in track_dictionary_list]
+    return tabulate.tabulate(rows, header, tablefmt='grid')

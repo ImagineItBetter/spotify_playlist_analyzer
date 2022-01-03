@@ -14,7 +14,7 @@ def main():
 
     header = track_dictionary_list[0].keys()
     rows = [track.values() for track in track_dictionary_list]
-    print(tabulate.tabulate(rows, header, tablefmt='grid'))
+    print(sph.tabulate_tracks(rows, tablefmt='grid'))
 
 if __name__ == "__main__":
     main()
